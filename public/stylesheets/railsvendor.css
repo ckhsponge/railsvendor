@@ -1,0 +1,38 @@
+body {
+	background-color: #FFF;
+	font-family: Verdana;
+	font-size: 0.75em;
+	line-height: 16px;
+	margin: 0px;
+	min-width: 940px;
+}
+
+#header {
+	background-color: #aaffaa;
+}
+
+#main_container {
+	width: 960px;
+}
+
+#main {
+	background-color: #ffcccc;
+	float: left;
+}
+
+#medium_panel {
+	position: relative;
+	width: 300px;
+	float: right;
+	background-color: #bbbb00;
+}
+
+#main {
+	width: 640px;
+	background-color: #ffcccc;
+}
+
+#footer {
+	clear: both;
+	background-color: #00ffaa;
+}
