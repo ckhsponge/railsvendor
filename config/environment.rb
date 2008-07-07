@@ -64,4 +64,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
+  
+  #turn off the db for now
+  config.frameworks -= [ :active_record ]
 end

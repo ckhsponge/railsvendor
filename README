@@ -1,2 +1,6 @@
 RailsVendor
 An example store application written in rails to demonstrate ActiveMerchant.
+
+
+Install haml
+gem install --no-ri haml
