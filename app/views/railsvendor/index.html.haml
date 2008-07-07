@@ -1,2 +1,7 @@
 %h2
   get your stuff
+- for purchasable in @purchasables
+  = link_to purchasable.human_name,{:action=>"detail",:id=>purchasable.id}
+  == -
+  = h purchasable.short_description
+  %br

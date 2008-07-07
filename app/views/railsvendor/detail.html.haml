@@ -1,0 +1,8 @@
+%h2
+  = @purchasable.human_name
+= h @purchasable.long_description
+- form_for :purchasable, :url => {:action => "purchase"} do |f|
+  = hidden_field  :purchasable,:id
+  = f.text_field :quantity
+  = f.submit "Add to Cart"
+  
