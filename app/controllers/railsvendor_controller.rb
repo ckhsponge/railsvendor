@@ -15,10 +15,19 @@ class RailsvendorController < ApplicationController
     @cart.save
   end
   
-  def check_out
+  def checkout
+  end
+  
+  def empty_cart
+    @cart.clear
+    redirect_to "/"
+  end
+  
+  def purchase_success
     @cart.clear
   end
   
+  protected
   def init_cart
     @cart = Cart.new(session)
   end

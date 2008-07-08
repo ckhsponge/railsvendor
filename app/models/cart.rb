@@ -3,8 +3,6 @@ class Cart
   
   def initialize(session)
     @session = session
-    puts @session[SESSION_KEY].to_s
-    puts "TT #{@session['test']}"
     @session['test'] = 'howdy'
     @data = {}
     if @session[SESSION_KEY] && @session[SESSION_KEY].keys #YAML.load(@session[SESSION_KEY]).keys
@@ -24,11 +22,20 @@ class Cart
   end
   
   def save
-    puts "save #{@data.to_yaml}"
     @session[SESSION_KEY] = @data #.to_yaml
   end
   
   def inspect
     @data.inspect
+  end
+  
+  def to_a
+    result = []
+    for key in @data.keys
+      purchasable = Purchasable::Base.find(key)
+      purchasable.quantity = @data[key]
+      result << purchasable
+    end
+    result
   end
 end

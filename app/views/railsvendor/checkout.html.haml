@@ -1,0 +1,21 @@
+%h2
+  Checking Out!
+= h @cart.inspect
+<form action="https://www.paypal.com/us/cgi-bin/webscr" method="post">
+= hidden_field_tag :cmd,"_cart"
+= hidden_field_tag :upload,1
+= hidden_field_tag :business,"purposemc@gmail.com"
+= hidden_field_tag :currency_code,"USD"
+= hidden_field_tag :no_shipping,1
+= hidden_field_tag :cancel_return,url_for(:action=>"checkout",:only_path=>false)
+= hidden_field_tag :return,url_for(:action=>"purchase_success",:only_path=>false)
+- i = 1
+- for purchasable in @cart.to_a
+  /= hidden_field_tag "item_name_#{i}",pluralize(purchasable.quantity,purchasable.human_name)
+  /= hidden_field_tag "amount_#{i}",fmt_money(purchasable.total_price)
+  = hidden_field_tag "item_name_#{i}",purchasable.human_name
+  = hidden_field_tag "amount_#{i}",fmt_money(purchasable.unit_price)
+  = hidden_field_tag "quantity_#{i}",purchasable.quantity
+  - i += 1
+<input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+</form>

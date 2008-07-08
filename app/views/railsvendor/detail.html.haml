@@ -3,6 +3,7 @@
 = h @purchasable.long_description
 - form_for :purchasable, :url => {:action => "purchase"} do |f|
   = hidden_field  :purchasable,:id
-  = f.text_field :quantity
+  Quantity:
+  = select :purchasable,:quantity, (1..100).to_a
   = f.submit "Add to Cart"
   
