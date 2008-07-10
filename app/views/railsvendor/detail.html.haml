@@ -3,7 +3,13 @@
 = h @purchasable.long_description
 - form_for :purchasable, :url => {:action => "purchase"} do |f|
   = hidden_field  :purchasable,:id
+  Price:
+  == $ #{fmt_money(@purchasable.unit_price)}
+  each
+  %br
   Quantity:
   = select :purchasable,:quantity, (1..100).to_a
   = f.submit "Add to Cart"
-  
+%br
+%h3
+  = link_to "<< Back", "/"

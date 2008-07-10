@@ -12,7 +12,7 @@ class Purchasable::Base
     def subclasses
       #return @@subclasses if @@subclasses
       #return @@subclasses = SUBCLASS_NAMES.collect{|n| exec(n)}
-      [Purchasable::FatRail,Purchasable::HandRail]
+      [Purchasable::FatRail,Purchasable::HandRail,Purchasable::TrolleyRail]
     end
     
     def instances

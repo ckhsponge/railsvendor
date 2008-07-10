@@ -1,7 +1,10 @@
 %h2
-  get your stuff
+  Select a Rail
 - for purchasable in @purchasables
   = link_to purchasable.human_name,{:action=>"detail",:id=>purchasable.id}
   == -
   = h purchasable.short_description
   %br
+- if !@cart.empty?
+  %h3
+    = link_to "View Cart", :action => "cart"

@@ -1,26 +1,33 @@
 %html
   %head
     %title
-      RailsVendor
+      RailsVendor - Ruby on Rails e-commerce example application
 
     = stylesheet_link_tag "railsvendor"
   
   %body
-    #header
-      %h1
-        = link_to "RailsVendor", "/"
-        == - example rails application
-    #main_container
-      #main
-        = yield
-      #medium_panel
-        <embed width="300" height="250" quality="high" wmode="transparent" type="application/x-shockwave-flash" allownetworking="all" allowscriptaccess="always" src="http://statics.marketing.spongecell.com/ads/big_light/2008/06/30/ad.swf" pluginspage="http://www.macromedia.com/go/getflashplayer" name="http://statics.marketing.spongecell.com/ads/big_light/2008/06/30/ad.swf"/>
-        = link_to "Rich Media Ads Powered by Spongecell", "http://ads.spongecell.com"    
-        
-    #footer
-      info
-      = link_to "Git It", "http://github.com/ckhsponge/railsvendor"
-      %br
-      = h @cart.inspect
-      %br
-      = link_to "View Cart", :action => "cart"
+    #frame
+      #header
+        %h1
+          = link_to "RailsVendor", "/"
+        == We carry a limited selection of medium quality photographs of rails at bargain prices.
+      #main_container
+        #main
+          = yield
+        #medium_panel
+          <embed width="300" height="250" quality="high" wmode="transparent" type="application/x-shockwave-flash" allownetworking="all" allowscriptaccess="always" src="http://statics.marketing.spongecell.com/ads/big_light/2008/06/30/ad.swf" pluginspage="http://www.macromedia.com/go/getflashplayer" name="http://statics.marketing.spongecell.com/ads/big_light/2008/06/30/ad.swf"/>
+          = link_to "Rich Media Ads Powered by Spongecell", "http://ads.spongecell.com"    
+          
+      #footer
+        - divider = "|"
+        RailsVendor is open source at
+        = link_to "GitHub", "http://github.com/ckhsponge/railsvendor"
+        = divider
+        - if @cart.empty?
+          Your cart is empty. Buy something.
+        - else
+          Your cart currently has
+          %b
+            = @cart.total_count
+          items.
+          = link_to "View Cart", :action => "cart"

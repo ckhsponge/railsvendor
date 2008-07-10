@@ -25,6 +25,14 @@ class Cart
     @session[SESSION_KEY] = @data #.to_yaml
   end
   
+  def total_count
+    @data.keys.inject(0) {|sum,key| sum + @data[key]}
+  end
+  
+  def empty?
+    @data.size == 0
+  end
+  
   def inspect
     @data.inspect
   end

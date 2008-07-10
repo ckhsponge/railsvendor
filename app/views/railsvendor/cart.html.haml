@@ -2,5 +2,7 @@
   Shopping Cart
 = h @cart.inspect
 %br
-= link_to "Checkout", :action => "checkout"
-= link_to "Empty Cart", :action => "empty_cart"
+%h3
+  = link_to "Continue Shopping", "/"
+  = link_to "Checkout", :action => "checkout"
+  = link_to "Empty Cart", :action => "empty_cart"

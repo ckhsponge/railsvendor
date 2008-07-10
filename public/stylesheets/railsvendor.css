@@ -7,12 +7,19 @@ body {
 	min-width: 940px;
 }
 
+#frame {
+	margin-left: auto;
+	margin-right: auto;
+	width: 940px;
+}
+
 #header {
 	background-color: #aaffaa;
+	padding: 10px;
 }
 
 #main_container {
-	width: 960px;
+	width: 940px;
 }
 
 #main {
@@ -28,11 +35,13 @@ body {
 }
 
 #main {
-	width: 640px;
+	width: 620px;
 	background-color: #ffcccc;
+	padding: 10px;
 }
 
 #footer {
 	clear: both;
 	background-color: #00ffaa;
+	padding: 10px;
 }
