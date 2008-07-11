@@ -29,6 +29,7 @@ class RailsvendorController < ApplicationController
   
   protected
   def init_cart
+    #ActiveMerchant::Billing::Base.integration_mode = :test #sandbox
     @cart = Cart.new(session)
   end
 end

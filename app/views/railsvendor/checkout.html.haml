@@ -1,23 +1,20 @@
 %h2
-  Checking Out!
+  Your cart
 = h @cart.inspect
-<form action="https://www.paypal.com/us/cgi-bin/webscr" method="post">
-= hidden_field_tag :cmd,"_cart"
-= hidden_field_tag :upload,1
-= hidden_field_tag :business,"purposemc@gmail.com"
-= hidden_field_tag :currency_code,"USD"
-= hidden_field_tag :no_shipping,1
-= hidden_field_tag :cancel_return,url_for(:action=>"checkout",:only_path=>false)
-= hidden_field_tag :return,url_for(:action=>"purchase_success",:only_path=>false)
-- i = 1
-- for purchasable in @cart.to_a
-  /= hidden_field_tag "item_name_#{i}",pluralize(purchasable.quantity,purchasable.human_name)
-  /= hidden_field_tag "amount_#{i}",fmt_money(purchasable.total_price)
-  = hidden_field_tag "item_name_#{i}",purchasable.human_name
-  = hidden_field_tag "amount_#{i}",fmt_money(purchasable.unit_price)
-  = hidden_field_tag "quantity_#{i}",purchasable.quantity
-  - i += 1
-<input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-</form>
+%h2
+  Choose your method of payment
+%p
+#checkout_method_title
+  PayPal Website Standard
+This is the most basic method of payment. You will be navigated to PayPal where you can enter your
+credit card information or sign in to your account.
+= render :partial => "/paypal/website_standard"
+%p
+#checkout_method_title
+  PayPal Website Standard from ActiveMerchant
+This method is the same as above except the html form was generated using ActiveMerchant.
+= render :partial => "/paypal/website_standard_active_merchant"
 %h3
   = link_to "Continue Shopping", "/"
+
+

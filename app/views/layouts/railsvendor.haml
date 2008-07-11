@@ -10,7 +10,7 @@
       #header
         %h1
           = link_to "RailsVendor", "/"
-        == We carry a limited selection of medium quality photographs of rails at bargain prices.
+        == We carry a limited selection of medium quality photographs at bargain prices.
       #main_container
         #main
           = yield
@@ -28,6 +28,6 @@
         - else
           Your cart currently has
           %b
-            = @cart.total_count
-          items.
+            = h @cart.total_count
+          = @cart.total_count == 1 ? "item." : "items."
           = link_to "View Cart", :action => "cart"
