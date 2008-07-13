@@ -1,4 +1,4 @@
-class Cart
+class RailsVendor::Cart
   SESSION_KEY = "shopping_cart"
   
   def initialize(session)

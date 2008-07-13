@@ -1,4 +1,5 @@
-class RailsvendorController < ApplicationController
+class RailsVendorController < ApplicationController
+  CONTACT_EMAIL_ADDRESS = "railsvendor@gmail.com"
   
   before_filter :init_cart
   
@@ -30,6 +31,6 @@ class RailsvendorController < ApplicationController
   protected
   def init_cart
     #ActiveMerchant::Billing::Base.integration_mode = :test #sandbox
-    @cart = Cart.new(session)
+    @cart = RailsVendor::Cart.new(session)
   end
 end

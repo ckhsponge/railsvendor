@@ -14,7 +14,12 @@ credit card information or sign in to your account.
   PayPal Website Standard from ActiveMerchant
 This method is the same as above except the html form was generated using ActiveMerchant.
 = render :partial => "/paypal/website_standard_active_merchant"
+%p
+#checkout_method_title
+  Pay using a credit card on this site
+This uses ActiveMerchant and the Trust Commerce gateway. No off-site navigation is needed.
+= link_to( image_tag("trustCommerceButton.png", :border => 0), :controller => "billing", :action => "new")
 %h3
-  = link_to "Continue Shopping", "/"
+  = link_to "<< Continue Shopping", "/"
 
 

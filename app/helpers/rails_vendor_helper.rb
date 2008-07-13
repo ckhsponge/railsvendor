@@ -1,0 +1,2 @@
+module RailsVendorHelper
+end

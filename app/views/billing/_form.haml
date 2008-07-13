@@ -1,0 +1,63 @@
+- form_for :billing, :url => {:action => "create"} do |f|
+  %table
+    %tr.medgray{"class"=>"medgray"}
+      %td
+        First Name
+        %br/
+        = f.text_field :first_name
+      %td
+        Last Name
+        %br/
+        = text_field :billing,:last_name
+    %tr
+      %td{"colspan"=>"1"}
+        Daytime phone
+        %br/
+        = text_field :billing,:phone_number
+      %td{"colspan"=>"1"}
+        Email address
+        %br/
+        = text_field :billing,:email_address
+    %tr.medgray{"class"=>"medgray"}
+      %td
+        Credit Card Type
+        %br/
+        = select :billing,:credit_type,RailsVendor::Billing::CREDIT_TYPE_OPTIONS
+      %td
+        Credit Card Number
+        %br/
+        = text_field :billing,:number,:size=>20,:maxlength=>16,:autocomplete=>"off"
+    %tr
+      %td{:nowrap=>true}
+        Expires on
+        %br/
+        = date_select 'billing', 'expiration_date', {:start_year=>Time.now.year,:end_year=>Time.now.year+8,:order=>[:month,:year],:use_month_numbers => true}
+      %td
+        %span.smallcaps{"class"=>"smallcaps"}
+          CVV
+        %br/
+        = text_field :billing,:cvv,:size=>4,:maxlength=>4,:autocomplete=>"off"
+    %tr.medgray{"class"=>"medgray"}
+      %td{:colspan=>4}
+        Street
+        %br/
+        = text_field :billing,:street,:size=>40
+    %tr.medgray{"class"=>"medgray"}
+      %td{:colspan=>1}
+        City
+        %br/
+        = text_field :billing,:city
+      %td
+        State
+        %br/
+        = text_field :billing,:state
+    %tr.medgray{"class"=>"medgray"}
+      %td{:colspan=>1}
+        Postal Code (Zip)
+        %br/
+        = text_field :billing,:zip
+      %td{:colspan=>4}
+        Country
+        %br/
+        = select :billing,:country,RailsVendor::Billing::COUNTRIES
+  = submit_tag "Submit"
