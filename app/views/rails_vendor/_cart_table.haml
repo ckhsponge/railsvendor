@@ -1,0 +1,16 @@
+%table{:cellpadding => "10"}
+  %th
+    Items
+  %th
+    Price
+  - for purchasable in @cart.to_a
+    %tr
+      %td
+        = h pluralize(purchasable.quantity,purchasable.human_name)
+      %td{:align => "right"}
+        = fmt_money purchasable.total_price
+  %tr
+    %td{:align => "right"}
+      Total:
+    %td{:align => "right"}
+      = fmt_money @cart.total_price

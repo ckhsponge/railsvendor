@@ -11,9 +11,12 @@ class RailsVendorController < ApplicationController
     @purchasable = Purchasable::Base.find(params[:id])
   end
   
-  def purchase
-    @cart.add(params[:purchasable][:id],params[:purchasable][:quantity].to_i)
+  def add_to_cart
+    @purchased = Purchasable::Base.find(params[:purchasable][:id])
+    @purchased.quantity = params[:purchasable][:quantity].to_i
+    @cart.add(@purchased)
     @cart.save
+    render :action => "cart"
   end
   
   def checkout

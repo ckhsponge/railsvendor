@@ -1,52 +1,65 @@
 body {
-	background-color: #FFF;
-	font-family: Verdana;
+	background-color: #1e3d76;
+	font-family: Arial, Verdana;
 	font-size: 0.75em;
 	line-height: 16px;
 	margin: 0px;
 	min-width: 940px;
 }
 
+a {
+	color: #659;
+	text-decoration: none;
+}
+
 #frame {
 	margin-left: auto;
 	margin-right: auto;
-	width: 940px;
+	width: 926px;
 }
 
 #header {
 	background-color: #aaffaa;
 	padding: 10px;
+	margin-top: 12px;
 }
 
 #main_container {
-	width: 940px;
+	width: 926px;
+	position: relative;
+	height: inherit;
 }
 
 #main {
-	background-color: #ffcccc;
 	float: left;
+	background-color: #CBE5EB;
+	margin: 4px 2px 4px 0px;
 }
 
 #medium_panel {
 	position: relative;
 	width: 300px;
 	float: right;
-	background-color: #bbbb00;
+	margin: 4px 0px 4px 2px;
 }
 
 #main {
-	width: 620px;
-	background-color: #ffcccc;
+	width: 600px;
 	padding: 10px;
 }
 
 #footer {
 	clear: both;
-	background-color: #00ffaa;
+	background-color: #aaffaa;
 	padding: 10px;
 }
 
 #checkout_method_title {
 	font-size: 120%;
 	font-weight: bold;
+}
+
+.purchase_link {
+	font-size: 140%;
+	line-height: 1.5;
 }

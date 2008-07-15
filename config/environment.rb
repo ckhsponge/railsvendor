@@ -65,6 +65,8 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
   
-  #turn off the db for now
-  config.frameworks -= [ :active_record ]
+  
+  rails_vendor_settings = YAML.load(File.read("#{RAILS_ROOT}/config/private.yml"))
+  rails_vendor_settings.keys.each{ |k| ENV[k.upcase] = rails_vendor_settings[k].to_s }
+  
 end

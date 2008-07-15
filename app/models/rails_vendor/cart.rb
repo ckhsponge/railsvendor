@@ -12,9 +12,9 @@ class RailsVendor::Cart
     end
   end
   
-  def add(purchasable_id,quantity)
-    @data[purchasable_id] ||= 0
-    @data[purchasable_id] += quantity
+  def add(purchasable)
+    @data[purchasable.id] ||= 0
+    @data[purchasable.id] += purchasable.quantity
   end
   
   def clear
@@ -27,6 +27,10 @@ class RailsVendor::Cart
   
   def total_count
     @data.keys.inject(0) {|sum,key| sum + @data[key]}
+  end
+  
+  def total_price
+    self.to_a.inject(0) {|sum,p| sum + p.total_price}
   end
   
   def empty?

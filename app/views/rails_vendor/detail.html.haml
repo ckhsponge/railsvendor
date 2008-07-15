@@ -1,7 +1,7 @@
 %h2
   = @purchasable.human_name
 = h @purchasable.long_description
-- form_for :purchasable, :url => {:action => "purchase"} do |f|
+- form_for :purchasable, :url => {:action => "add_to_cart"} do |f|
   = hidden_field  :purchasable,:id
   Price:
   == $ #{fmt_money(@purchasable.unit_price)}

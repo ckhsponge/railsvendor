@@ -1,8 +1,18 @@
+- @purchased ||= nil
+- if @purchased
+  %h3
+    You have added
+    = pluralize(@purchased.quantity,@purchased.human_name)
+    to your shopping cart.
 %h2
   Shopping Cart
-= h @cart.inspect
+= render :partial => "/rails_vendor/cart_table"
 %br
 %h3
-  = link_to "Continue Shopping", "/"
-  = link_to "Checkout", :action => "checkout"
+  - divider = "&#149;"
+  = link_to "<< Continue Shopping", "/"
+  = divider
   = link_to "Empty Cart", :action => "empty_cart"
+  = divider
+  %span{:style => "font-size: 120%"}
+    = link_to "Checkout", :action => "checkout"
