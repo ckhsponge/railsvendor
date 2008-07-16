@@ -4,15 +4,15 @@ class RailsVendorController < ApplicationController
   before_filter :init_cart
   
   def index
-    @purchasables = Purchasable::Base.instances
+    @purchasables = RailsVendor::Purchasable.find(:all)
   end
   
   def detail
-    @purchasable = Purchasable::Base.find(params[:id])
+    @purchasable = RailsVendor::Purchasable.find(params[:id])
   end
   
   def add_to_cart
-    @purchased = Purchasable::Base.find(params[:purchasable][:id])
+    @purchased = RailsVendor::Purchasable.find(params[:purchasable][:id])
     @purchased.quantity = params[:purchasable][:quantity].to_i
     @cart.add(@purchased)
     @cart.save
