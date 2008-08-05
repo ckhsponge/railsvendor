@@ -23,10 +23,14 @@ class RailsVendor::Purchasable
   class << self
     #finds by id or returns all
     def find(id)
-      if :all == id
-        return INSTANCES.collect{ |i| RailsVendor::Purchasable.new(i) }
+      result = if :all == id
+        INSTANCES.collect{ |i| RailsVendor::Purchasable.new(i) }
+      elsif INSTANCE_MAP[id]
+        RailsVendor::Purchasable.new( INSTANCE_MAP[id] ) if INSTANCE_MAP[id]
+      else
+        nil
       end
-      RailsVendor::Purchasable.new( INSTANCE_MAP[id] )
+      return result
     end
   end
   
