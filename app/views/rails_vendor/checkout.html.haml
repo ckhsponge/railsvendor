@@ -3,22 +3,25 @@
 = render :partial => "/rails_vendor/cart_table"
 %h2
   Choose your method of payment
-%p
 #checkout_method_title
   PayPal Website Standard
 This is the most basic method of payment. You will be navigated to PayPal where you can enter your
 credit card information or sign in to your account.
 = render :partial => "/paypal/website_standard"
+= render :partial => "code", :locals => {:file_name => "app/views/paypal/_website_standard.haml"}
 %p
 #checkout_method_title
   PayPal Website Standard from ActiveMerchant
 This method is the same as above except the html form was generated using ActiveMerchant.
 = render :partial => "/paypal/website_standard_active_merchant"
+= render :partial => "code", :locals => {:file_name => "app/views/paypal/_website_standard_active_merchant.haml"}
 %p
 #checkout_method_title
   Pay using a credit card on this site
 This uses ActiveMerchant and the Trust Commerce gateway. No off-site navigation is needed.
 = link_to( image_tag("trustCommerceButton.png", :border => 0), :controller => "billing", :action => "new")
+%br
+= render :partial => "code", :locals => {:file_name => "app/controllers/billing_controller.rb"}
 %h3
   = link_to "<< Continue Shopping", "/"
 

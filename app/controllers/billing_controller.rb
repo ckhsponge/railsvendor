@@ -5,12 +5,13 @@ class BillingController < RailsVendorController
   end
   
   def create
+    #use a transaction so billing is only saved upon success
     RailsVendor::Billing.transaction do
       billing = RailsVendor::Billing.create(params[:billing])
       active_merchant_credit_card = billing.active_merchant_credit_card
-      login = ""
-      password = ""
-      gateway=ActiveMerchant::Billing::TrustCommerceGateway.new(:login => ENV['TRUST_COMMERCE_LOGIN'].to_s,:password => ENV['TRUST_COMMERCE_PASSWORD'].to_s)
+      login = ENV['TRUST_COMMERCE_LOGIN'].to_s
+      password = ENV['TRUST_COMMERCE_PASSWORD'].to_s
+      gateway=ActiveMerchant::Billing::TrustCommerceGateway.new(:login => login,:password => password)
       cents = 100
       r1 = gateway.authorize(cents, active_merchant_credit_card)
       puts "r1 #{r1.inspect}"

@@ -1,5 +1,6 @@
 body {
-	background-color: #1e3d76;
+	background-image:url(/images/bg_gradient.jpg);
+	background-repeat:repeat-x;
 	font-family: Arial, Verdana;
 	font-size: 0.75em;
 	line-height: 16px;
@@ -8,8 +9,18 @@ body {
 }
 
 a {
-	color: #659;
+	color: #339;
 	text-decoration: none;
+}
+
+p {
+	padding-top:10px;
+}
+
+#title {
+	font-size: 300%;
+	line-height: 150%;
+	font-weight: bolder;
 }
 
 #frame {
@@ -32,7 +43,8 @@ a {
 
 #main {
 	float: left;
-	background-color: #CBE5EB;
+	/*background-color: #CBE5EB;*/
+	background-color: #C8EBFF;
 	margin: 4px 2px 4px 0px;
 }
 
@@ -55,7 +67,7 @@ a {
 }
 
 #checkout_method_title {
-	font-size: 120%;
+	font-size: 125%;
 	font-weight: bold;
 }
 
@@ -64,9 +76,15 @@ a {
 	line-height: 1.5;
 }
 
+.show_code_link {
+	font-size: 130%;
+	font-weight: bold;
+}
+
 .ruby {
 	font-size: 140%;
 	overflow-x: scroll;
+	background-color: white;
 }
 
 .ruby .normal {}

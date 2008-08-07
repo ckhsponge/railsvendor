@@ -5,11 +5,11 @@
     - service.cmd "_cart"
     - service.add_field 'upload', "1"
     - service.no_shipping '1' 
-    / the helper sets up an item by default. let's delete that info
+    - #the helper sets up an item by default. we shall delete that info
     - service.form_fields.delete('item_name')
     - service.form_fields.delete('item_number')
     - service.form_fields.delete('quantity')
-    / upload the entire cart
+    - #upload the entire cart
     - i = 1
     - for purchasable in @cart.to_a
       - service.add_field "item_name_#{i}",purchasable.human_name

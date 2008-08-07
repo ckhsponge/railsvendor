@@ -4,13 +4,15 @@
       RailsVendor - Ruby on Rails e-commerce example application
 
     = stylesheet_link_tag "railsvendor"
+    = javascript_include_tag "prototype"
+    = javascript_include_tag "rails_vendor"
   
   %body
     #frame
       #header
-        %h1
+        #title
           = link_to "RailsVendor", "/"
-        == We carry a limited selection of medium quality photographs at bargain prices.
+        == A limited selection of medium quality photographs at bargain prices
       #main_container
         #main
           ~ yield

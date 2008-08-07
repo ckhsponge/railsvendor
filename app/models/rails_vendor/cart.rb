@@ -15,6 +15,7 @@ class RailsVendor::Cart
   
   #adds the purchasable to this cart, does not yet write it to the session
   def add(purchasable)
+    return unless purchasable.quantity && purchasable.quantity > 0
     @data[purchasable.id] ||= 0
     @data[purchasable.id] += purchasable.quantity
   end

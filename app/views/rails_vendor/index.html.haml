@@ -8,3 +8,11 @@
 - if !@cart.empty?
   %h3
     = link_to "View Cart", :action => "cart"
+%br
+%span{:style=>"font-size:120%"}
+  %i
+    or
+%br
+%h2
+  Skip the store and view
+  = link_to "Example Checkout Code", :action => "example_code"

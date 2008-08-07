@@ -30,7 +30,17 @@ class RailsVendorController < ApplicationController
     render :action => "cart"
   end
   
+  def example_code
+    for purchasable in RailsVendor::Purchasable.find(:all)
+      purchasable.quantity = rand 5
+      @cart.add(purchasable)
+    end
+    @cart.save
+    redirect_to :action => "checkout"
+  end
+  
   def checkout
+    @convertor = Syntax::Convertors::HTML.for_syntax "ruby"
   end
   
   def empty_cart

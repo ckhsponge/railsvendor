@@ -1,0 +1,5 @@
+= link_to_function "Show Code", "toggle_code_div(this)", :class => "show_code_link"
+%span{:class => "file_name", :style => "display:none"}
+  = "- #{h file_name}"
+.ruby{:style => "display:none"}
+  ~ @convertor.convert( File.read( file_name ), true )
