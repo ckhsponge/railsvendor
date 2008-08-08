@@ -29,7 +29,8 @@
         = link_to "GitHub", "http://github.com/ckhsponge/railsvendor"
         = divider
         - if @cart.empty?
-          Your cart is empty. Buy something.
+          Your cart is empty.
+          = link_to "Buy something.", "/"
         - else
           Your cart currently has
           %b

@@ -30,9 +30,15 @@ class RailsVendorController < ApplicationController
     render :action => "cart"
   end
   
+  #fill the card with some random items and go to the checkout screen
   def example_code
     for purchasable in RailsVendor::Purchasable.find(:all)
       purchasable.quantity = rand 5
+      @cart.add(purchasable)
+    end
+    if @cart.empty?
+      purchasable = RailsVendor::Purchasable.find(:all).first
+      purchasable.quantity = (rand 5)+1
       @cart.add(purchasable)
     end
     @cart.save
@@ -49,6 +55,7 @@ class RailsVendorController < ApplicationController
   end
   
   def purchase_success
+    @purchased = @cart.to_a
     @cart.clear
   end
   

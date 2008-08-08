@@ -4,7 +4,7 @@ class RailsVendor::Purchasable
   {:id => "1", :human_name => "Fat Rail", :short_description => "Slightly wider than a normal rail", 
     :long_description => "This rail bears the load of even the heaviest of trains.", :unit_price => 0.75},
   {:id => "2", :human_name => "Hand Rail", :short_description => "Helps with balance while navigating stairs", 
-    :long_description => "Avoid accideents by installing this rail anywhere someone could trip and fall.", :unit_price => 0.57},
+    :long_description => "Avoid accidents by installing this rail anywhere someone could trip and fall.", :unit_price => 0.57},
   {:id => "3", :human_name => "Trolley Rail", :short_description => "Serves light trains and street cars", 
     :long_description => "The old trollies of San Francisco were once pulled by mules underneath the street.", :unit_price => 0.93}
   ]
@@ -45,6 +45,14 @@ class RailsVendor::Purchasable
   def total_price
     raise "no quantity" unless quantity
     unit_price * quantity
+  end
+  
+  def image_url
+    self.human_name.gsub(" ",'').underscore+".png"
+  end
+  
+  def image_thumb_url
+    self.human_name.gsub(" ",'').underscore+"_thumb.png"
   end
   
   def to_s

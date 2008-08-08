@@ -1,5 +1,7 @@
 %h2
   = @purchasable.human_name
+= image_tag(@purchasable.image_thumb_url, :border => 0)
+%br
 = h @purchasable.long_description
 - form_for :purchasable, :url => {:action => "add_to_cart"} do |f|
   = hidden_field  :purchasable,:id

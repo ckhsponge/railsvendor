@@ -1,15 +1,19 @@
-%table{:cellpadding => "10"}
+%table{:cellpadding => "5"}
   %th
+  %th{:align => 'right'}
     Items
-  %th
+  %th{:align => 'right'}
     Price
   - for purchasable in @cart.to_a
     %tr
       %td
+        = image_tag purchasable.image_thumb_url, :width => 80
+      %td{:align => 'right'}
         = h pluralize(purchasable.quantity,purchasable.human_name)
       %td{:align => "right"}
         = fmt_money purchasable.total_price
   %tr
+    %td
     %td{:align => "right"}
       Total:
     %td{:align => "right"}

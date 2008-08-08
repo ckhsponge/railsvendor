@@ -1,9 +1,15 @@
 %h2
   Select a Rail
-- for purchasable in @purchasables
-  %span.purchase_link
-    = link_to purchasable.human_name,{:action=>"detail",:id=>purchasable.id}
-  = h purchasable.short_description
+%table{:cellspacing => 5}
+  - for purchasable in @purchasables
+    %tr
+      %td{:align => "center"}
+        = link_to(image_tag(purchasable.image_thumb_url, :width => 100, :border => 0),{:action=>"detail",:id=>purchasable.id})
+      %td
+        %span.purchase_link
+          = link_to purchasable.human_name,{:action=>"detail",:id=>purchasable.id}
+        %br
+        = h purchasable.short_description
   %br
 - if !@cart.empty?
   %h3

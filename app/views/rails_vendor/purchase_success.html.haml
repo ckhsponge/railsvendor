@@ -1,2 +1,11 @@
-%h2
-  Purchase Success!
+- if @purchased.empty?
+  %h2
+    Oops! We lost your rails. Please try again.
+- else
+  %h2
+    Purchase Success!
+  Here are your rails. Click on a rail to view a medium resolution version in a new window.
+  %br
+  - for purchasable in @purchased
+    - purchasable.quantity.times do
+      = link_to image_tag(purchasable.image_thumb_url, :width => 180, :border => 0), image_path(purchasable.image_url), :target => "_blank"

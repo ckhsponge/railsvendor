@@ -19,5 +19,6 @@ class BillingController < RailsVendorController
       r2 = gateway.capture(cents, authorization, {})
       puts "r2 #{r2.inspect}"
     end
+    redirect_to :controller => "rails_vendor", :action => "purchase_success"
   end
 end
