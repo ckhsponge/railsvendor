@@ -1,0 +1,11 @@
+%form{:action => "https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/#{ENV['GOOGLE_CHECKOUT_MERCHANT_ID']}", :method => "post", :accept_charset => "utf-8"}
+  - i = 1
+  - for purchasable in @cart.to_a
+    = hidden_field_tag "item_name_#{i}", purchasable.human_name
+    = hidden_field_tag "item_description_#{i}", purchasable.short_description
+    = hidden_field_tag "item_price_#{i}", fmt_money(purchasable.unit_price)
+    = hidden_field_tag "item_quantity_#{i}", purchasable.quantity
+    - i += 1
+  = hidden_field_tag "_charset_"
+  - image_src = "http://checkout.google.com/buttons/checkout.gif?merchant_id=#{ENV['GOOGLE_CHECKOUT_MERCHANT_ID']}&w=180&h=46&style=white&variant=text&loc=en_US"
+  %input{:type=>"image", :name=>"Google Checkout", :alt=>"Fast checkout through Google", :src=>image_src, :height=>"46", :width=>"180" }
