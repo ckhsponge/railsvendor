@@ -50,13 +50,17 @@ p {
 
 #medium_panel {
 	position: relative;
-	width: 300px;
+	width: 170px;
 	float: right;
-	margin: 4px 0px 4px 2px;
+	margin: 4px 0px 4px 0px;
+	padding-top: 8px;
+	padding-left: 4px;
+	text-align: center;
+	background-color: white;
 }
 
 #main {
-	width: 600px;
+	width: 730px;
 	padding: 10px;
 }
 

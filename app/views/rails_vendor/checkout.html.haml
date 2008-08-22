@@ -23,8 +23,15 @@ A Google Checkout button using the HTML API. Buyers are navigated to Google wher
 = render :partial => "code", :locals => {:file_name => "app/views/google/_checkout.haml"}
 %p
 #checkout_method_title
+  Amazon Checkout
+An Amazon Checkout button using the HTML API. Buyers are navigated to Amazon.
+= render :partial => "/amazon/checkout"
+= render :partial => "code", :locals => {:file_name => "app/views/amazon/_checkout.haml"}
+%p
+#checkout_method_title
   Pay using a credit card on this site
 This uses ActiveMerchant and the Trust Commerce gateway. No off-site navigation is needed.
+%br
 = link_to( image_tag("trustCommerceButton.png", :border => 0), :controller => "billing", :action => "new")
 %br
 = render :partial => "code", :locals => {:file_name => "app/controllers/billing_controller.rb"}

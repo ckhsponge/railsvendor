@@ -1,0 +1,65 @@
+/<script type=text/javascript  src=https://images-na.ssl-images-amazon.com/images/G/01/cba/js/jquery.js></script>
+/<script type=text/javascript  src=https://images-na.ssl-images-amazon.com/images/G/01/cba/js/widget/widget.js></script>
+%form{:action => "http://payments.amazon.com/checkout/", :method => "post", :enctype => "multipart/form-data"}
+  - i = 1
+  - for purchasable in @cart.to_a
+    = hidden_field_tag "item_merchant_id_#{i}", "A1TDXY6XJ7JAMX"
+    = hidden_field_tag "item_title_#{i}", purchasable.human_name
+    /= hidden_field_tag "item_description_#{i}", purchasable.short_description
+    = hidden_field_tag "item_price_#{i}", fmt_money(purchasable.unit_price)
+    = hidden_field_tag "item_quantity_#{i}", purchasable.quantity
+    - i += 1
+  = hidden_field_tag "currency_code", "USD"
+  %input{:alt=>"Checkout with Amazon Payments", :src=>"https://payments.amazon.com/gp/cba/button?ie=UTF8&color=orange&background=white&size=medium",  :type=>"image"}
+
+  
+<form method=POST action=http://payments.amazon.com/checkout/ enctype=multipart/form-data>
+
+<input name=item_merchant_id_1 value=A1TDXY6XJ7JAMX type=hidden />
+<input name=item_title_1 value=Red Fish type=hidden />
+<input name=item_price_1 value=19.99 type=hidden />
+<input name=item_quantity_1 value=1 type=hidden />
+
+<input name=currency_code value=USD type=hidden />
+
+<input alt=Checkout with Amazon Payments src=https://payments.amazon.com/gp/cba/button?ie=UTF8&color=orange&background=white&size=medium type=image>
+
+</form>
+
+
+
+
+
+<form method=POST action=http://payments.amazon.com/checkout/ enctype=multipart/form-data>
+
+<input name=item_merchant_id_1 value=A1TDXY6XJ7JAMX type=hidden />
+<input name=item_title_1 value=Red Fish type=hidden />
+<input name=item_description_1 value=A red fish packed in spring water. type=hidden />
+<input name=item_price_1 value=19.99 type=hidden />      
+<input name=item_quantity_1 value=1 type=hidden />
+<input name=item_fulfillment_network_1 value=MERCHANT type=hidden />
+<input name=item_sku_1 value=ABC123 type=hidden />
+<input name=item_url_1 value=http://mydomain.com/items?ABC123 type=hidden />
+<input name=item_category_1 value=Food type=hidden />
+<input name=item_weight_1 value=2 type=hidden />
+<input name=item_weight_unit_1 value=lb type=hidden />
+
+<input name=item_merchant_id_2 value=A1TDXY6XJ7JAMX type=hidden />
+<input name=item_title_2 value=Blue Fish type=hidden />
+<input name=item_price_2 value=49.99 type=hidden />
+<input name=item_quantity_2 value=1 type=hidden />
+<input name=item_fulfillment_network_2 value=AMAZON_NA type=hidden />
+<input name=item_sku_2 value=DEF456 type=hidden />
+<input name=item_condition_2 value=New type=hidden />
+<input name=item_url_2 value= http://mydomain.com/items?DEF456 type=hidden /> 
+<input name=item_image_url_2 type=hidden value=http://ecx.images-amazon.com/images/I/61tLyQMRnfL.jpg />
+
+<input name=shipping_method_service_level_1 value=expedited type=hidden />
+
+<input name=currency_code value=USD type=hidden />
+
+<input name=cba_signature value=c2lnbmF0dXJlIGZvciBDaGVja291dCBieSBBbWF6b24 type=hidden />
+
+<input alt=Checkout with Amazon Payments src=https://payments.amazon.com/gp/cba/button?ie=UTF8&color=orange&background=white&size=medium type=image>
+
+</form>
