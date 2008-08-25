@@ -1,7 +1,8 @@
+- divider = "&#149;"
 %html
   %head
     %title
-      RailsVendor - Ruby on Rails e-commerce example application
+      Rails Vendor - Ruby on Rails e-commerce example application
 
     = stylesheet_link_tag "railsvendor"
     = javascript_include_tag "prototype"
@@ -11,8 +12,12 @@
     #frame
       #header
         #title
-          = link_to "RailsVendor", "/"
-        == A limited selection of medium quality photographs at bargain prices
+          = link_to "Rails Vendor", "/"
+        == Example e-commerce application demonstrating various website payment methods
+        = divider
+        == Built for
+        = link_to "RailsConf Europe 2008","http://en.oreilly.com/railseurope2008/public/content/home", :target => "_blank"
+        /== A limited selection of medium quality photographs at bargain prices
       #main_container
         #main
           ~ yield
@@ -23,7 +28,6 @@
             = link_to "Spongecell Rich Media", "http://spongecell.com", :title => "Rich Media Advertisements", :target => "_blank"
           
       #footer
-        - divider = "&#149;"
         RailsVendor is open source at
         = link_to "GitHub", "http://github.com/ckhsponge/railsvendor"
         = divider
@@ -36,3 +40,5 @@
             = h @cart.total_count
           = @cart.total_count == 1 ? "item." : "items."
           = link_to "View Cart", :controller => "rails_vendor", :action => "cart"
+      #sub_footer
+        = render :partial => "/layouts/adsense"

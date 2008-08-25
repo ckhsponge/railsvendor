@@ -1,3 +1,5 @@
+/- website_standard_active_merchant do
+/  = paypal_submit
 - payment_service_for 1000, PaypalController::ACCOUNT, |
   :currency => 'USD', |
   :service => :paypal, |
@@ -19,4 +21,4 @@
     - service.notify_url notify_url
     - service.return_url url_for(:action=>"purchase_success",:only_path=>false)
     - service.cancel_return_url url_for(:action=>"checkout",:only_path=>false)
-  = paypal_submit
+  = paypal_submit #the submit button generated from PaypalHelper
