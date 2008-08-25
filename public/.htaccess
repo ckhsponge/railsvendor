@@ -20,7 +20,7 @@ Options +FollowSymLinks +ExecCGI
 RewriteEngine On
 #MTSTART -- Automatically generated, don't modify --
 RewriteCond %{REQUEST_FILENAME}   !-f
-RewriteRule ^(.*)$ http://10.1.131.181:2012/${escape:$1} [P]
+RewriteRule ^(.*)$ http://10.1.131.30:2033/${escape:$1} [P]
 #MTEND
 
 # If your Rails application is accessed via an Alias directive,
