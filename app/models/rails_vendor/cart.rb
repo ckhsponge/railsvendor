@@ -40,6 +40,11 @@ class RailsVendor::Cart
     self.to_a.inject(0) {|sum,p| sum + p.total_price}
   end
   
+  #returns an integer
+  def total_price_cents
+    (self.total_price*100).round.to_i
+  end
+  
   def empty?
     @data.size == 0
   end

@@ -1,3 +1,10 @@
+%h2
+  Your cart
+= render :partial => "/rails_vendor/cart_table"
+- if flash[:note]
+  #error
+    = flash[:note]
+= error_messages_for 'billing'
 = render :partial => "form"
 %a{:onclick => dummy_population_js, :href => "#"}
   populate form with dummy data

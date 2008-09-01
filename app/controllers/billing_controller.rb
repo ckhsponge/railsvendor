@@ -5,20 +5,29 @@ class BillingController < RailsVendorController
   end
   
   def create
-    #use a transaction so billing is only saved upon success
-    RailsVendor::Billing.transaction do
-      billing = RailsVendor::Billing.create(params[:billing])
-      active_merchant_credit_card = billing.active_merchant_credit_card
-      login = ENV['TRUST_COMMERCE_LOGIN'].to_s
-      password = ENV['TRUST_COMMERCE_PASSWORD'].to_s
-      gateway=ActiveMerchant::Billing::TrustCommerceGateway.new(:login => login,:password => password)
-      cents = 100
-      r1 = gateway.authorize(cents, active_merchant_credit_card)
-      puts "r1 #{r1.inspect}"
-      authorization = r1.authorization
-      r2 = gateway.capture(cents, authorization, {})
-      puts "r2 #{r2.inspect}"
+    begin
+      raise RailsVendor::Exception.new("Invalid card") unless @cart && @cart.total_price_cents && @cart.total_price_cents > 0
+      #use a transaction so billing is only saved upon success
+      RailsVendor::Billing.transaction do
+        @billing = RailsVendor::Billing.new(params[:billing])
+        @billing.save!
+        active_merchant_credit_card = @billing.active_merchant_credit_card
+        login = ENV['TRUST_COMMERCE_LOGIN'].to_s
+        password = ENV['TRUST_COMMERCE_PASSWORD'].to_s
+        gateway=ActiveMerchant::Billing::TrustCommerceGateway.new(:login => login,:password => password)
+        cents = @cart.total_price_cents
+        response = gateway.authorize(cents, active_merchant_credit_card)
+        raise RailsVendor::Exception.new(response.message) unless response.success?
+        authorization = response.authorization
+        response2 = gateway.capture(cents, authorization, {})
+        raise RailsVendor::Exception.new(response2.message) unless response2.success?
+      end
+      redirect_to :controller => "rails_vendor", :action => "purchase_success"
+    rescue  ActiveRecord::RecordInvalid => exc
+      render :action => "new"
+    rescue RailsVendor::Exception => exc
+      flash.now[:note] = exc.to_s
+      render :action => "new"
     end
-    redirect_to :controller => "rails_vendor", :action => "purchase_success"
   end
 end

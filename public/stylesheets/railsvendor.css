@@ -17,6 +17,18 @@ p {
 	padding-top:10px;
 }
 
+#error {
+	color: red;
+	line-height: 120%;
+	font-size: 250%;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
 #title {
 	font-size: 300%;
 	line-height: 150%;

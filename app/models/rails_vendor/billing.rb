@@ -49,4 +49,51 @@ class RailsVendor::Billing < ActiveRecord::Base
     cc.verification_value = self.cvv if self.cvv
     cc
   end
+  
+  
+  def validate
+    errors.add(:number,"must be specified") unless @number && !@number.empty?
+    errors.add(:number,"of credit card must be only digits") unless 0 == (@number =~ /^(\d){1,16}$/)
+    if !@cvv || @cvv.strip.empty? || 0!=(@cvv =~ /^(\d){3,4}$/)
+      errors.add(:cvv," must be 3 or 4 digits")
+    end
+    errors.add(:credit_type,"must be specified") unless self.credit_type && !self.credit_type.empty?
+    errors.add(:number," invalid for card type") unless 0==(@number =~ type_regexp(self.credit_type))
+
+    errors.add(:first_name," must be specified") if self.first_name.strip.empty?
+    errors.add(:last_name," must be specified") if self.last_name.strip.empty?
+    errors.add(:credit_type," must be specified") if self.credit_type.strip.empty?
+    errors.add(:credit_type," is invalid") unless CREDIT_TYPE_OPTIONS.collect{|c| c[1]}.include?(self.credit_type)
+    errors.add(:street," must be specified") unless self.street && !self.street.strip.empty?
+    errors.add(:city," must be specified") unless self.city && !self.city.strip.empty?
+    errors.add(:state," must be specified") unless self.state && !self.state.strip.empty?
+    errors.add(:zip," must be specified") unless self.zip && !self.zip.strip.empty?
+    errors.add(:country," must be specified") unless self.country && !self.country.strip.empty?
+    errors.add(:expiration_date," must be later than today") if !expiration_date || self.expired?
+    
+    #copy address and phone number errors to base
+    errors.add(:phone_number,"is invalid") unless self.phone_number && !self.phone_number.strip.empty?
+    errors.add(:email_address,"is invalid") unless self.email_address && !self.email_address.strip.empty?
+    
+    if self.external_id
+      errors.add(:external_id," cannot be empty") if self.external_id.strip.empty?
+    end
+  end
+  
+  def type_regexp(credit_type)
+    case credit_type
+      when VISA 
+        /^4(\d){12,15}$/
+      when MASTERCARD 
+        /^5[1-5](\d){14,14}$/
+      when DISCOVER 
+        /^6011(\d){12,12}$/
+      when AMERICAN_EXPRESS 
+        /^((34)|(37))(\d){13,13}$/
+    end
+  end
+  
+  def expired?
+    Date.today>=self.expiration_date
+  end
 end
