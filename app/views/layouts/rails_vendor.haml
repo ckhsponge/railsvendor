@@ -22,6 +22,8 @@
         #main
           ~ yield
           #sub_footer
+            %br
+            %br
             = render :partial => "/layouts/adsense"
         #medium_panel
           <iframe src="http://statics.live.spongecell.com/railsconf/2008/08/18/railsConf_index.html" width=160 height=600 marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling=no></iframe>
@@ -42,3 +44,6 @@
             = h @cart.total_count
           = @cart.total_count == 1 ? "item." : "items."
           = link_to "View Cart", :controller => "rails_vendor", :action => "cart"
+        = divider
+        View the 
+        = link_to "RailsConf Europe 2008 Presentation", "/presentation/e-commerce.pdf"
