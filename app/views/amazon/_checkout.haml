@@ -1,12 +1,14 @@
 /<script type=text/javascript  src=https://images-na.ssl-images-amazon.com/images/G/01/cba/js/jquery.js></script>
 /<script type=text/javascript  src=https://images-na.ssl-images-amazon.com/images/G/01/cba/js/widget/widget.js></script>
-%form{:action => "http://payments.amazon.com/checkout/", :method => "post", :enctype => "multipart/form-data"}
+- merchant_id = "A1TDXY6XJ7JAMX"
+%form{:action => "http://payments.amazon.com/checkout/#{merchant_id}", :method => "post", :enctype => "multipart/form-data"}
   - i = 1
   - for purchasable in @cart.to_a
-    = hidden_field_tag "item_merchant_id_#{i}", "A1TDXY6XJ7JAMX"
+    = hidden_field_tag "item_merchant_id_#{i}", merchant_id
     = hidden_field_tag "item_title_#{i}", purchasable.human_name
     = hidden_field_tag "item_price_#{i}", fmt_money(purchasable.unit_price)
     = hidden_field_tag "item_quantity_#{i}", purchasable.quantity
+    
     /= hidden_field_tag "item_description_#{i}", purchasable.short_description
     - i += 1
   = hidden_field_tag "currency_code", "USD"
